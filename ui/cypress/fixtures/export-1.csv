@@ -1,0 +1,8 @@
+Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
+2020-12-27,dfcbb17b32174f9e8c3e3e69be7e39c2,,Test Transfer,,CURRENCY::PLN,,,,Assets:Current Assets:AnotherBank,AnotherBank,,"(2,200.11)",n,,1.0000
+,,,,,,,,,Assets:Current Assets:TestBank,TestBank,,"2,200.11",n,,1.0000
+2020-12-28,d9c76c7482be4ace87a3035877b6b029,,Test Spend,,CURRENCY::PLN,,,,Assets:Current Assets:TestBank,TestBank,,(55.02),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,55.02,n,,1.0000
+2020-12-29,1d1243e063f9450daea96bfdc753d61b,,Test Split Spend,,CURRENCY::PLN,,,,Assets:Current Assets:TestBank,TestBank,,(127.28),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,100.01,n,,1.0000
+,,,,,,,,,Expenses:Clothes,Clothes,,27.27,n,,1.0000
