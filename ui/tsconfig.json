@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -17,7 +20,7 @@
     "target": "es2015",
     "module": "es2020",
     "lib": [
-      "es2018",
+      "es2019",
       "dom"
     ]
   },

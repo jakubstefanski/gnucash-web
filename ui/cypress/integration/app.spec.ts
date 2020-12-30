@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
-context('App', () => {
+context("App", () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit("/")
   })
 
-  it('title', () => {
-    cy.title().should('equal', 'GnuCash Web')
+  it("title", () => {
+    cy.title().should("equal", "GnuCash Web")
   })
 })

@@ -1,0 +1,4 @@
+Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
+2020-12-29,1d1243e063f9450daea96bfdc753d61b,,Test Split Spend,,CURRENCY::USD,,,,Assets:Current Assets:TestBank,,,(127.28),n,,1.0000
+,,,,,,,,,Expenses:Groceries,,,100.01,n,,1.0000
+,,,,,,,,,Expenses:Clothes,,,27.27,n,,1.0000
