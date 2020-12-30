@@ -41,7 +41,7 @@ context("ExportService", () => {
   context("exportToCsv", () => {
     it("exports empty list", () => {
       const csv = service.exportToCsv([]);
-      assertCsv(csv, "export-empty.csv");
+      assertCsv(csv, "export/empty.csv");
     });
 
     it("exports spend transaction", () => {
@@ -57,7 +57,7 @@ context("ExportService", () => {
           ]
         }
       ]);
-      assertCsv(csv, "export-spend.csv");
+      assertCsv(csv, "export/spend.csv");
     });
 
     it("exports transfer transaction", () => {
@@ -73,7 +73,7 @@ context("ExportService", () => {
           ]
         }
       ]);
-      assertCsv(csv, "export-transfer.csv");
+      assertCsv(csv, "export/transfer.csv");
     });
 
     it("exports split spend transaction", () => {
@@ -90,7 +90,7 @@ context("ExportService", () => {
           ]
         }
       ]);
-      assertCsv(csv, "export-split-spend.csv");
+      assertCsv(csv, "export/split-spend.csv");
     });
 
     it("exports multiple transactions", () => {
@@ -127,7 +127,7 @@ context("ExportService", () => {
           ]
         },
       ]);
-      assertCsv(csv, "export-multiple.csv");
+      assertCsv(csv, "export/multiple.csv");
     });
   });
 });
