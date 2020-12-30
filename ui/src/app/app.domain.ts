@@ -1,4 +1,4 @@
-import { Big } from "big.js";
+import { Decimal } from "@src/app/decimal";
 
 export interface Commodity {
   namespace: string;
@@ -22,6 +22,6 @@ export interface Transaction {
 
 export interface Split {
   account: Account;
-  value: Big;
-  quantity: Big;
+  value: Decimal;
+  quantity: Decimal;
 }

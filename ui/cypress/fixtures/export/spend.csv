@@ -1,3 +1,3 @@
 Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
-2020-12-28,d9c76c7482be4ace87a3035877b6b029,,Test Spend,,CURRENCY::USD,,,,Assets:Current Assets:TestBank,,,(55.02),n,,1.0000
-,,,,,,,,,Expenses:Groceries,,,55.02,n,,1.0000
+2020-12-28,36137a1fa9e641688fc05c8ae4d2c825,,Test Spend,,CURRENCY::USD,,,,Assets:Primary Bank,Primary Bank,,(55.02),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,55.02,n,,1.0000

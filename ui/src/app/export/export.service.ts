@@ -2,8 +2,10 @@ import { Injectable } from "@angular/core";
 
 import { unparse } from "papaparse";
 
-import { formatNumber } from "@src/app/number.utils";
+import { Decimal, formatDecimal } from "@src/app/decimal";
 import { Transaction } from "@src/app/app.domain";
+
+const ACCOUNT_SEPARATOR = ":"; // TODO: make it configurable
 
 @Injectable({
   providedIn: "root",
@@ -25,9 +27,9 @@ export class ExportService {
         "Action": "",
         "Memo": "",
         "Full Account Name": tx.splits[0].account.name,
-        "Account Name": "",
+        "Account Name": this.shortenAccountName(tx.splits[0].account.name),
         "Amount With Sym": "",
-        "Amount Num.": formatNumber(tx.splits[0].value), // TODO: verify
+        "Amount Num.": this.formatAmount(tx.splits[0].value), // TODO: verify
         "Reconcile": "n",
         "Reconcile Date": "",
         "Rate/Price": "1.0000" // TODO: calculate if currencies differ
@@ -42,9 +44,9 @@ export class ExportService {
         "Action": "",
         "Memo": "",
         "Full Account Name": split.account.name,
-        "Account Name": "",
+        "Account Name": this.shortenAccountName(split.account.name),
         "Amount With Sym": "",
-        "Amount Num.": formatNumber(split.value), // TODO: verify
+        "Amount Num.": this.formatAmount(split.value), // TODO: verify
         "Reconcile": "n",
         "Reconcile Date": "",
         "Rate/Price": "1.0000" // TODO: calculate if currencies differ
@@ -86,5 +88,17 @@ export class ExportService {
       skipEmptyLines: false,
     });
     return csv + newline;
+  }
+
+  private formatAmount(amount: Decimal): string {
+    return formatDecimal(amount);
+  }
+
+  private shortenAccountName(name: string): string {
+    const index = name.lastIndexOf(ACCOUNT_SEPARATOR);
+    if (index >= 0) {
+      return name.substring(index + 1);
+    }
+    return name;
   }
 }

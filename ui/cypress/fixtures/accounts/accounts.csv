@@ -1,0 +1,11 @@
+type,full_name,name,code,description,color,notes,commoditym,commodityn,hidden,tax,placeholder
+ASSET,Assets,Assets,,,,,USD,CURRENCY,F,F,T
+BANK,Assets:Another Bank,Another Bank,,,,,USD,CURRENCY,F,F,F
+BANK,Assets:Foreign Bank,Foreign Bank,,,,,EUR,CURRENCY,F,F,F
+BANK,Assets:Primary Bank,Primary Bank,,,,,USD,CURRENCY,F,F,F
+INCOME,Income,Income,,,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses,Expenses,,,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Clothes,Clothes,,,,,USD,CURRENCY,F,F,F
+EXPENSE,Expenses:Groceries,Groceries,,,,,USD,CURRENCY,F,F,F
+EQUITY,Opening Balances - EUR,Opening Balances - EUR,,,,,EUR,CURRENCY,F,F,F
+EQUITY,Opening Balances - USD,Opening Balances - USD,,,,,USD,CURRENCY,F,F,F

@@ -1,20 +1,19 @@
 /// <reference types="cypress" />
 
-import { Big } from "big.js";
-
 import { ExportService } from "@src/app/export/export.service";
 import { Account, Commodity } from "@src/app/app.domain";
+import { toDecimal as D } from "@src/app/decimal";
 
 const USD: Commodity = { namespace: "CURRENCY", name: "USD" };
 
 const TEST_BANK: Account = {
-  name: "Assets:Current Assets:TestBank",
+  name: "Assets:Primary Bank",
   type: "BANK",
   commodity: USD
 };
 
 const ANOTHER_BANK: Account = {
-  name: "Assets:Current Assets:AnotherBank",
+  name: "Assets:Another Bank",
   type: "BANK",
   commodity: USD
 };
@@ -48,12 +47,12 @@ context("ExportService", () => {
       const csv = service.exportToCsv([
         {
           date: new Date("2020-12-28T00:00:00Z"),
-          transactionId: "d9c76c7482be4ace87a3035877b6b029",
+          transactionId: "36137a1fa9e641688fc05c8ae4d2c825",
           description: "Test Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: new Big("-55.02"), value: new Big("-55.02") },
-            { account: GROCERIES, quantity: new Big("55.02"), value: new Big("55.02") }
+            { account: TEST_BANK, quantity: D("-55.02"), value: D("-55.02") },
+            { account: GROCERIES, quantity: D("55.02"), value: D("55.02") }
           ]
         }
       ]);
@@ -64,12 +63,12 @@ context("ExportService", () => {
       const csv = service.exportToCsv([
         {
           date: new Date("2020-12-27T00:00:00Z"),
-          transactionId: "dfcbb17b32174f9e8c3e3e69be7e39c2",
+          transactionId: "0e981c75e25d44f582aca60a04524020",
           description: "Test Transfer",
           currency: USD,
           splits: [
-            { account: ANOTHER_BANK, quantity: new Big("-2200.11"), value: new Big("-2200.11") },
-            { account: TEST_BANK, quantity: new Big("2200.11"), value: new Big("2200.11") }
+            { account: ANOTHER_BANK, quantity: D("-2200.11"), value: D("-2200.11") },
+            { account: TEST_BANK, quantity: D("2200.11"), value: D("2200.11") }
           ]
         }
       ]);
@@ -80,13 +79,13 @@ context("ExportService", () => {
       const csv = service.exportToCsv([
         {
           date: new Date("2020-12-29T00:00:00Z"),
-          transactionId: "1d1243e063f9450daea96bfdc753d61b",
+          transactionId: "de77b6ab8e0449d2b4378092ef2012d2",
           description: "Test Split Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: new Big("-127.28"), value: new Big("-127.28") },
-            { account: GROCERIES, quantity: new Big("100.01"), value: new Big("100.01") },
-            { account: CLOTHES, quantity: new Big("27.27"), value: new Big("27.27") }
+            { account: TEST_BANK, quantity: D("-127.28"), value: D("-127.28") },
+            { account: GROCERIES, quantity: D("100.01"), value: D("100.01") },
+            { account: CLOTHES, quantity: D("27.27"), value: D("27.27") }
           ]
         }
       ]);
@@ -97,33 +96,33 @@ context("ExportService", () => {
       const csv = service.exportToCsv([
         {
           date: new Date("2020-12-27T00:00:00Z"),
-          transactionId: "dfcbb17b32174f9e8c3e3e69be7e39c2",
+          transactionId: "0e981c75e25d44f582aca60a04524020",
           description: "Test Transfer",
           currency: USD,
           splits: [
-            { account: ANOTHER_BANK, quantity: new Big("-2200.11"), value: new Big("-2200.11") },
-            { account: TEST_BANK, quantity: new Big("2200.11"), value: new Big("2200.11") }
+            { account: ANOTHER_BANK, quantity: D("-2200.11"), value: D("-2200.11") },
+            { account: TEST_BANK, quantity: D("2200.11"), value: D("2200.11") }
           ]
         },
         {
           date: new Date("2020-12-28T00:00:00Z"),
-          transactionId: "d9c76c7482be4ace87a3035877b6b029",
+          transactionId: "36137a1fa9e641688fc05c8ae4d2c825",
           description: "Test Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: new Big("-55.02"), value: new Big("-55.02") },
-            { account: GROCERIES, quantity: new Big("55.02"), value: new Big("55.02") }
+            { account: TEST_BANK, quantity: D("-55.02"), value: D("-55.02") },
+            { account: GROCERIES, quantity: D("55.02"), value: D("55.02") }
           ]
         },
         {
           date: new Date("2020-12-29T00:00:00Z"),
-          transactionId: "1d1243e063f9450daea96bfdc753d61b",
+          transactionId: "de77b6ab8e0449d2b4378092ef2012d2",
           description: "Test Split Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: new Big("-127.28"), value: new Big("-127.28") },
-            { account: GROCERIES, quantity: new Big("100.01"), value: new Big("100.01") },
-            { account: CLOTHES, quantity: new Big("27.27"), value: new Big("27.27") }
+            { account: TEST_BANK, quantity: D("-127.28"), value: D("-127.28") },
+            { account: GROCERIES, quantity: D("100.01"), value: D("100.01") },
+            { account: CLOTHES, quantity: D("27.27"), value: D("27.27") }
           ]
         },
       ]);

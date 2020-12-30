@@ -1,8 +1,8 @@
 Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
-2020-12-27,dfcbb17b32174f9e8c3e3e69be7e39c2,,Test Transfer,,CURRENCY::USD,,,,Assets:Current Assets:AnotherBank,,,(2200.11),n,,1.0000
-,,,,,,,,,Assets:Current Assets:TestBank,,,2200.11,n,,1.0000
-2020-12-28,d9c76c7482be4ace87a3035877b6b029,,Test Spend,,CURRENCY::USD,,,,Assets:Current Assets:TestBank,,,(55.02),n,,1.0000
-,,,,,,,,,Expenses:Groceries,,,55.02,n,,1.0000
-2020-12-29,1d1243e063f9450daea96bfdc753d61b,,Test Split Spend,,CURRENCY::USD,,,,Assets:Current Assets:TestBank,,,(127.28),n,,1.0000
-,,,,,,,,,Expenses:Groceries,,,100.01,n,,1.0000
-,,,,,,,,,Expenses:Clothes,,,27.27,n,,1.0000
+2020-12-27,0e981c75e25d44f582aca60a04524020,,Test Transfer,,CURRENCY::USD,,,,Assets:Another Bank,Another Bank,,(2200.11),n,,1.0000
+,,,,,,,,,Assets:Primary Bank,Primary Bank,,2200.11,n,,1.0000
+2020-12-28,36137a1fa9e641688fc05c8ae4d2c825,,Test Spend,,CURRENCY::USD,,,,Assets:Primary Bank,Primary Bank,,(55.02),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,55.02,n,,1.0000
+2020-12-29,de77b6ab8e0449d2b4378092ef2012d2,,Test Split Spend,,CURRENCY::USD,,,,Assets:Primary Bank,Primary Bank,,(127.28),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,100.01,n,,1.0000
+,,,,,,,,,Expenses:Clothes,Clothes,,27.27,n,,1.0000
