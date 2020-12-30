@@ -1,40 +1,14 @@
 import { Injectable } from "@angular/core";
 
-import { Big } from "big.js";
 import { unparse } from "papaparse";
 
 import { formatNumber } from "@src/app/number.utils";
-
-export interface Commodity {
-  namespace: string;
-  name: string;
-}
-
-export interface Account {
-  commodity: Commodity;
-  name: string;
-  type: string;
-}
-
-export interface Transaction {
-  transactionId: string;
-  currency: Commodity;
-  date: Date;
-  num?: string;
-  description?: string;
-  splits: Split[];
-}
-
-export interface Split {
-  account: Account;
-  value: Big;
-  quantity: Big;
-}
+import { Transaction } from "@src/app/app.domain";
 
 @Injectable({
   providedIn: "root",
 })
-export class BookService {
+export class ExportService {
   constructor() {}
 
   exportToCsv(transactions: Transaction[]): string {

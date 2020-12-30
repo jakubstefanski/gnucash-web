@@ -2,10 +2,10 @@
 
 context("App", () => {
   beforeEach(() => {
-    cy.visit("/")
-  })
+    cy.visit("/");
+  });
 
   it("title", () => {
-    cy.title().should("equal", "GnuCash Web")
-  })
-})
+    cy.title().should("equal", "GnuCash Web");
+  });
+});

@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 
-import { Big } from "big.js"
+import { Big } from "big.js";
 
-import { BookService, Account, Commodity } from "@src/app/book/book.service";
+import { ExportService } from "@src/app/export/export.service";
+import { Account, Commodity } from "@src/app/app.domain";
 
 const USD: Commodity = { namespace: "CURRENCY", name: "USD" };
 
@@ -30,11 +31,11 @@ const CLOTHES: Account = {
   commodity: USD
 };
 
-context("BookService", () => {
-  let service: BookService;
+context("ExportService", () => {
+  let service: ExportService;
 
   beforeEach(() => {
-    service = new BookService();
+    service = new ExportService();
   });
 
   context("exportToCsv", () => {
@@ -131,8 +132,8 @@ context("BookService", () => {
   });
 });
 
-function assertCsv(actualCsv: string, expectedCsvPath: string): Cypress.Chainable<void> {
-  return cy.fixture(expectedCsvPath).then(expectedCsv => {
+const assertCsv = (actualCsv: string, expectedCsvPath: string): Cypress.Chainable<void> =>
+  cy.fixture(expectedCsvPath).then(expectedCsv => {
     const actualLines = actualCsv.split("\n");
     const expectedLines = expectedCsv.split("\n");
 
@@ -141,4 +142,3 @@ function assertCsv(actualCsv: string, expectedCsvPath: string): Cypress.Chainabl
       expect(actualLines[i]).to.equal(expectedLines[i], `CSV differs at line ${i + 1}`);
     }
   });
-}
