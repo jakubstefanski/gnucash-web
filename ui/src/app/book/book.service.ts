@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { Big } from "big.js"
+import { Big } from "big.js";
 import { unparse } from "papaparse";
 
-import { formatNumber } from '@src/app/number.utils';
+import { formatNumber } from "@src/app/number.utils";
 
 export interface Commodity {
   namespace: string;
@@ -32,14 +32,15 @@ export interface Split {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class BookService {
   constructor() {}
 
   exportToCsv(transactions: Transaction[]): string {
-    const data = transactions.flatMap(tx => {
-      return [{
+    /* eslint-disable quote-props */
+    /* eslint-disable @typescript-eslint/naming-convention */
+    const data = transactions.flatMap(tx => [{
         "Date": tx.date.toISOString().substr(0, 10),
         "Transaction ID": tx.transactionId,
         "Number": tx.num,
@@ -73,10 +74,28 @@ export class BookService {
         "Reconcile": "n",
         "Reconcile Date": "",
         "Rate/Price": "1.0000" // TODO: calculate if currencies differ
-      }))];
-    });
+      }))]);
+    /* eslint-enable quote-props */
+    /* eslint-enable @typescript-eslint/naming-convention */
 
-    const columns = ["Date", "Transaction ID", "Number", "Description", "Notes", "Commodity/Currency", "Void Reason", "Action", "Memo", "Full Account Name", "Account Name", "Amount With Sym", "Amount Num.", "Reconcile", "Reconcile Date", "Rate/Price"];
+    const columns = [
+      "Date",
+      "Transaction ID",
+      "Number",
+      "Description",
+      "Notes",
+      "Commodity/Currency",
+      "Void Reason",
+      "Action",
+      "Memo",
+      "Full Account Name",
+      "Account Name",
+      "Amount With Sym",
+      "Amount Num.",
+      "Reconcile",
+      "Reconcile Date",
+      "Rate/Price"
+    ];
     const newline = "\n";
     if (data.length === 0) {
       return columns.join(",") + newline;
@@ -88,7 +107,7 @@ export class BookService {
       quotes: false,
       quoteChar: '"',
       escapeChar: '"',
-      delimiter: ',',
+      delimiter: ",",
       newline,
       skipEmptyLines: false,
     });
