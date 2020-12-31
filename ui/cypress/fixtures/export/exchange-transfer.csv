@@ -1,0 +1,3 @@
+Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
+2020-12-30,c8bae4bd7b924781831553d002ecd2d6,,Test Exchange Transfer,,CURRENCY::USD,,,,Assets:Foreign Bank,Foreign Bank,,198.34,n,,1 + 4550/19834
+,,,,,,,,,Assets:Primary Bank,Primary Bank,,(243.84),n,,1.0000

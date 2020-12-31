@@ -3,6 +3,7 @@ import { Decimal } from "@src/app/decimal";
 export interface Commodity {
   namespace: string;
   name: string;
+  precision: number;
 }
 
 export interface Account {

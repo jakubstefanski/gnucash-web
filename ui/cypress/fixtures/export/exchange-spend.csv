@@ -1,0 +1,3 @@
+Date,Transaction ID,Number,Description,Notes,Commodity/Currency,Void Reason,Action,Memo,Full Account Name,Account Name,Amount With Sym,Amount Num.,Reconcile,Reconcile Date,Rate/Price
+2020-12-30,890a085861fc4f72a978d5f14cea5cdb,,Test Exchange Spend,,CURRENCY::EUR,,,,Assets:Foreign Bank,Foreign Bank,,(13.53),n,,1.0000
+,,,,,,,,,Expenses:Groceries,Groceries,,16.60,n,,1353/1660

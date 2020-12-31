@@ -4,9 +4,10 @@ import { ExportService } from "@src/app/export/export.service";
 import { Account, Commodity } from "@src/app/app.domain";
 import { toDecimal as D } from "@src/app/decimal";
 
-const USD: Commodity = { namespace: "CURRENCY", name: "USD" };
+const USD: Commodity = { namespace: "CURRENCY", name: "USD", precision: 2 };
+const EUR: Commodity = { namespace: "CURRENCY", name: "EUR", precision: 2 };
 
-const TEST_BANK: Account = {
+const PRIMARY_BANK: Account = {
   name: "Assets:Primary Bank",
   type: "BANK",
   commodity: USD
@@ -16,6 +17,12 @@ const ANOTHER_BANK: Account = {
   name: "Assets:Another Bank",
   type: "BANK",
   commodity: USD
+};
+
+const FOREIGN_BANK: Account = {
+  name: "Assets:Foreign Bank",
+  type: "BANK",
+  commodity: EUR
 };
 
 const GROCERIES: Account = {
@@ -51,7 +58,7 @@ context("ExportService", () => {
           description: "Test Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: D("-55.02"), value: D("-55.02") },
+            { account: PRIMARY_BANK, quantity: D("-55.02"), value: D("-55.02") },
             { account: GROCERIES, quantity: D("55.02"), value: D("55.02") }
           ]
         }
@@ -68,7 +75,7 @@ context("ExportService", () => {
           currency: USD,
           splits: [
             { account: ANOTHER_BANK, quantity: D("-2200.11"), value: D("-2200.11") },
-            { account: TEST_BANK, quantity: D("2200.11"), value: D("2200.11") }
+            { account: PRIMARY_BANK, quantity: D("2200.11"), value: D("2200.11") }
           ]
         }
       ]);
@@ -83,7 +90,7 @@ context("ExportService", () => {
           description: "Test Split Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: D("-127.28"), value: D("-127.28") },
+            { account: PRIMARY_BANK, quantity: D("-127.28"), value: D("-127.28") },
             { account: GROCERIES, quantity: D("100.01"), value: D("100.01") },
             { account: CLOTHES, quantity: D("27.27"), value: D("27.27") }
           ]
@@ -101,7 +108,7 @@ context("ExportService", () => {
           currency: USD,
           splits: [
             { account: ANOTHER_BANK, quantity: D("-2200.11"), value: D("-2200.11") },
-            { account: TEST_BANK, quantity: D("2200.11"), value: D("2200.11") }
+            { account: PRIMARY_BANK, quantity: D("2200.11"), value: D("2200.11") }
           ]
         },
         {
@@ -110,7 +117,7 @@ context("ExportService", () => {
           description: "Test Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: D("-55.02"), value: D("-55.02") },
+            { account: PRIMARY_BANK, quantity: D("-55.02"), value: D("-55.02") },
             { account: GROCERIES, quantity: D("55.02"), value: D("55.02") }
           ]
         },
@@ -120,13 +127,45 @@ context("ExportService", () => {
           description: "Test Split Spend",
           currency: USD,
           splits: [
-            { account: TEST_BANK, quantity: D("-127.28"), value: D("-127.28") },
+            { account: PRIMARY_BANK, quantity: D("-127.28"), value: D("-127.28") },
             { account: GROCERIES, quantity: D("100.01"), value: D("100.01") },
             { account: CLOTHES, quantity: D("27.27"), value: D("27.27") }
           ]
         },
       ]);
       assertCsv(csv, "export/multiple.csv");
+    });
+
+    it("exports transfer transaction with currency exchange", () => {
+      const csv = service.exportToCsv([
+        {
+          date: new Date("2020-12-30T00:00:00Z"),
+          transactionId: "c8bae4bd7b924781831553d002ecd2d6",
+          description: "Test Exchange Transfer",
+          currency: USD,
+          splits: [
+            { account: FOREIGN_BANK, quantity: D("198.34"), value: D("243.84") },
+            { account: PRIMARY_BANK, quantity: D("-243.84"), value: D("-243.84") }
+          ]
+        }
+      ]);
+      assertCsv(csv, "export/exchange-transfer.csv");
+    });
+
+    it("exports spend transaction with currency exchange", () => {
+      const csv = service.exportToCsv([
+        {
+          date: new Date("2020-12-30T00:00:00Z"),
+          transactionId: "890a085861fc4f72a978d5f14cea5cdb",
+          description: "Test Exchange Spend",
+          currency: EUR,
+          splits: [
+            { account: FOREIGN_BANK, quantity: D("-13.53"), value: D("-13.53") },
+            { account: GROCERIES, quantity: D("16.60"), value: D("13.53") }
+          ]
+        }
+      ]);
+      assertCsv(csv, "export/exchange-spend.csv");
     });
   });
 });
