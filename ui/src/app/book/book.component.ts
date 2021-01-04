@@ -55,4 +55,8 @@ export class BookComponent implements OnInit {
     }
     return formatCommodityQuantity(row.quantity.abs(), row.account.commodity);
   }
+
+  getRowClass(row: Transaction | Split): string[] {
+    return isTransaction(row) ? ["transaction"] : ["split"];
+  }
 }
