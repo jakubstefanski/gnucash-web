@@ -3,8 +3,10 @@ import { Big, BigSource, RoundingMode } from "big.js";
 export type Decimal = Big;
 export const toDecimal = (num: BigSource): Decimal => new Big(num);
 
+export const isNegative = (num: Decimal): boolean => num.s === -1;
+
 export const formatDecimal = (num: Decimal, precision?: number): string => {
-  if (num.s === -1) {
+  if (isNegative(num)) {
     return `(${num.abs().toFixed(precision)})`;
   }
   return num.toFixed(precision);
