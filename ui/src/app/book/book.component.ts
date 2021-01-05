@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
+import { saveAs } from "file-saver";
+
 import { formatCommodityQuantity, isTransaction, Split, Transaction } from "@src/app/app.domain";
 import { isNegative } from "@src/app/decimal";
+import { ExportService } from "@src/app/export/export.service";
 import { TRANSACTIONS } from "@src/app/fixtures";
 
 @Component({
@@ -11,13 +14,24 @@ import { TRANSACTIONS } from "@src/app/fixtures";
 })
 export class BookComponent implements OnInit {
   displayedColumns: string[] = ["date", "num", "description", "account", "fundsIn", "fundsOut"];
-  dataSource = TRANSACTIONS
-    .sort((a, b) => a.date.getTime() - b.date.getTime())
-    .flatMap(tx => [tx, ...tx.splits]);
+  transactions: Transaction[] = TRANSACTIONS;
 
-  constructor() { }
+  get dataSource() {
+    return this.transactions
+      .sort((a, b) => a.date.getTime() - b.date.getTime())
+      .flatMap(tx => [tx, ...tx.splits]);
+  }
+
+  constructor(private exportService: ExportService) { }
 
   ngOnInit(): void {
+  }
+
+  exportToCsv() {
+    const csv = this.exportService.exportToCsv(this.transactions);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const date = new Date().toISOString().substr(0, 10);
+    saveAs(blob, `gnucash-export-${date}.csv`);
   }
 
   formatDate(row: Transaction | Split): string {

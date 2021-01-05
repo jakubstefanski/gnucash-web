@@ -1,8 +1,10 @@
+section button {
+  margin-bottom: 20px;
+  float: right;
+}
+
 table.mat-table {
-  width: 90%;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   border-collapse: collapse;
 
   td, th {
