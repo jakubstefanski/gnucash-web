@@ -1,4 +1,9 @@
-section button {
+section.left {
+  margin-bottom: 20px;
+  float: left;
+}
+
+section.right {
   margin-bottom: 20px;
   float: right;
 }
@@ -10,6 +15,11 @@ table.mat-table {
   td, th {
     border: 1px solid #333333;
     padding-left: 5px;
+    padding-right: 5px;
+
+    &.date, &.account, &.funds-in, &.funds-out {
+      text-align: right;
+    }
   }
 
   th {
