@@ -1,4 +1,9 @@
-section button {
+section.left {
+  margin-bottom: 20px;
+  float: left;
+}
+
+section.right {
   margin-bottom: 20px;
   float: right;
 }
