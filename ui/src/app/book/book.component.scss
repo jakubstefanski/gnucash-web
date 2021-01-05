@@ -16,15 +16,15 @@ table.mat-table {
     border: 1px solid #333333;
     padding-left: 5px;
     padding-right: 5px;
+
+    &.date, &.account, &.funds-in, &.funds-out {
+      text-align: right;
+    }
   }
 
   th {
     border-bottom: 2px solid #333333;
     font-weight: bold;
-  }
-
-  td.date, td.account, td.funds-in, td.funds-out {
-    text-align: right;
   }
 
   tr {
